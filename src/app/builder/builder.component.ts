@@ -14,13 +14,9 @@ export class BuilderComponent implements OnInit {
     {itemType: 'header', displayIcon: faQuoteLeft, displayName: 'Header'}
   ];
 
-  inBounds = true;
-  edge = {
-    top: true,
-    bottom: true,
-    left: true,
-    right: true
-  };
+  movingOffset = { x: 0, y: 0 };
+  endOffset = { x: 0, y: 0 };
+  edge;
 
   constructor() { }
 
@@ -30,6 +26,24 @@ export class BuilderComponent implements OnInit {
   checkEdge(event) {
     this.edge = event;
     console.log('edge:', event);
+  }
+
+  onStart(event) {
+    console.log('started output:', event);
+  }
+
+  onStop(event) {
+    console.log('stopped output:', event);
+  }
+
+  onMoving(event) {
+    this.movingOffset.x = event.x;
+    this.movingOffset.y = event.y;
+  }
+
+  onMoveEnd(event) {
+    this.endOffset.x = event.x;
+    this.endOffset.y = event.y;
   }
 
 }

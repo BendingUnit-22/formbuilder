@@ -20,7 +20,13 @@
           [trackPosition]="false"
           (edge)="checkEdge($event)"
           [bounds]="content_boundary"
-          [inBounds]="inBounds">
+          [inBounds]="true"
+          (started)="onStart($event)"
+          (stopped)="onStop(item)"
+          (movingOffset)="onMoving($event)"
+          [preventDefaultEvent]="true"
+          (endOffset)="onMoveEnd($event)">
+
           <fa-icon [icon]="item.displayIcon"></fa-icon> <span>{{item.displayName}}</span>
       </li>
     </ul>
