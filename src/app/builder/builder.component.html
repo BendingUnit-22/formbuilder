@@ -1,8 +1,8 @@
 
 
-<div class="row" #content_boundary>
+<div class="row" #content_boundary id="content_boundary">
 
-  <div class="col-9 bg-secondary">
+  <div class="col-9 bg-secondary"  #main_area id="main_area">
     <!--<ul [dragula]="bag1">-->
         <!--<li>Hello</li>-->
     <!--</ul>-->
@@ -12,7 +12,7 @@
 
 
 
-  <div class="col-3 bg-info" style="height:297mm; padding: 10px 10px;">
+  <div class="col-3 bg-info" id="side_area" >
     <ul class="list-group">
       <li *ngFor="let item of formItems"
           class="list-group-item"

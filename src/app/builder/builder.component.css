@@ -6,6 +6,14 @@ li span{
 }
 
 #content_boundary {
-  width:210mm;
-  height:297mm
+  height:297mm;
+ }
+
+
+#main_area {
+  background-color: red;
+}
+
+#side_area {
+  padding: 10px 10px;
 }
