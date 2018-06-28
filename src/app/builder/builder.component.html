@@ -1,0 +1,28 @@
+
+
+<div class="row" #content_boundary>
+
+  <div class="col-9 bg-secondary">
+    <!--<ul [dragula]="bag1">-->
+        <!--<li>Hello</li>-->
+    <!--</ul>-->
+
+  </div>
+
+
+
+
+  <div class="col-3 bg-info" style="height:297mm; padding: 10px 10px;">
+    <ul class="list-group">
+      <li *ngFor="let item of formItems"
+          class="list-group-item"
+          [ngDraggable]="true"
+          [trackPosition]="false"
+          (edge)="checkEdge($event)"
+          [bounds]="content_boundary"
+          [inBounds]="inBounds">
+          <fa-icon [icon]="item.displayIcon"></fa-icon> <span>{{item.displayName}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -2,13 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { BuilderComponent } from './builder/builder.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {DragulaModule} from 'ng2-dragula';
+import {AngularDraggableModule} from 'angular2-draggable';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BuilderComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule,
+    DragulaModule,
+    AngularDraggableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
