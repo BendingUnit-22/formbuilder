@@ -2,33 +2,35 @@
 
 <div class="row" #content_boundary id="content_boundary">
 
-  <div class="col-9 bg-secondary"  #main_area id="main_area">
-    <!--<ul [dragula]="bag1">-->
-        <!--<li>Hello</li>-->
-    <!--</ul>-->
-
+  <div class="col-8"  #main_area id="main_area" [dragula]="main_area_bag">
+    <app-uiview *ngFor="let droppedItem of formItems; let i = index" [formitem]="droppedItem" (viewClick)="selectElement(i)" [selected]="i==selectedIndex"></app-uiview>
   </div>
 
-
-
-
-  <div class="col-3 bg-info" id="side_area" >
-    <ul class="list-group">
-      <li *ngFor="let item of formItems"
-          class="list-group-item"
-          [ngDraggable]="true"
-          [trackPosition]="false"
-          (edge)="checkEdge($event)"
-          [bounds]="content_boundary"
-          [inBounds]="true"
-          (started)="onStart($event)"
-          (stopped)="onStop(item)"
-          (movingOffset)="onMoving($event)"
-          [preventDefaultEvent]="true"
-          (endOffset)="onMoveEnd($event)">
-
-          <fa-icon [icon]="item.displayIcon"></fa-icon> <span>{{item.displayName}}</span>
-      </li>
+    <div class="col-4" id="side_area" >
+    <ul class="nav nav-tabs">
+      <li class="nav-item"><a  data-toggle="tab" href="#elements" class="nav-link text-warning active">Elements</a></li>
+      <li class="nav-item"><a  data-toggle="tab" href="#editor" class="nav-link  text-warning">Editor</a></li>
     </ul>
+
+      <div class="tab-content clearfix">
+        <!--Element Tab-->
+        <ul class="list-group tab-pane active" id="elements">
+          <li *ngFor="let item of templateTypes" #item_element
+              class="list-group-item"
+              [ngDraggable]="true"
+              [trackPosition]="false"
+              [bounds]="content_boundary"
+              [inBounds]="true"
+              (started)="onStart(main_area.getBoundingClientRect())"
+              (movingOffset)="onMoving(item_element.getBoundingClientRect())"
+              (endOffset)="onMoveEnd(item_element.getBoundingClientRect(), item)">
+            <fa-icon [icon]="item.displayIcon"></fa-icon> <span>{{item.displayName}}</span>
+          </li>
+        </ul>
+        <!--Element Tab-->
+        <div id="editor" class="tab-pane">
+          Editor
+        </div>
+      </div>
   </div>
 </div>

@@ -9,41 +9,59 @@ import {faEdit, faQuoteLeft} from '@fortawesome/free-solid-svg-icons';
 })
 export class BuilderComponent implements OnInit {
 
-  formItems: FormItem[] = [
+  templateTypes: FormItem[] = [
     {itemType: 'textfield', displayIcon: faEdit, displayName: 'Text Field'},
     {itemType: 'header', displayIcon: faQuoteLeft, displayName: 'Header'}
   ];
 
-  movingOffset = { x: 0, y: 0 };
-  endOffset = { x: 0, y: 0 };
-  edge;
+  formItems: FormItem[] = [];
+  contentBoundary = {x: 0, y: 0, width: 0, height: 0 };
+  selectedIndex: number;
+  constructor() {
 
-  constructor() { }
+  }
 
   ngOnInit() {
+
+   }
+
+
+   selectElement(event) {
+      this.selectedIndex = event;
+   }
+
+   clearHighLight(){
+      this.selectedIndex = -1;
+   }
+
+  onStart(content_box) {
+    this.contentBoundary = {x: content_box.x, y: content_box.y, width: content_box.width, height: content_box.width };
   }
 
-  checkEdge(event) {
-    this.edge = event;
-    console.log('edge:', event);
+  onMoving(itemBound) {
+    // const movingItemBound = {x: itemBound.x, y: itemBound.y, width: itemBound.width, height: itemBound.width };
+    // const center = this.midPoint(movingItemBound);
+    // this.logger = 'x:' + center.centerX + ' y: ' + center.centerY;
   }
 
-  onStart(event) {
-    console.log('started output:', event);
+  onMoveEnd(itemBound, item) {
+    const movingItemBound = {x: itemBound.x, y: itemBound.y, width: itemBound.width, height: itemBound.width };
+    const containInBound = this.containsBound(this.contentBoundary, movingItemBound);
+    if (containInBound) {
+      this.formItems.push(item);
+    }
   }
 
-  onStop(event) {
-    console.log('stopped output:', event);
+  containsBound(parent, child): boolean {
+    const cX = this.midPoint(child).centerX;
+    const cY = this.midPoint(child).centerY;
+    return (cX >= parent.x && cY >= parent.y && cX <= parent.x + parent.width && cY <= parent.y + parent.height);
   }
 
-  onMoving(event) {
-    this.movingOffset.x = event.x;
-    this.movingOffset.y = event.y;
-  }
-
-  onMoveEnd(event) {
-    this.endOffset.x = event.x;
-    this.endOffset.y = event.y;
+  midPoint(frame) {
+    const centerX = frame.x + frame.width / 2.0;
+    const centerY = frame.y + frame.height / 2.0;
+    return {centerX: centerX, centerY: centerY};
   }
 
 }

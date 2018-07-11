@@ -1,0 +1,19 @@
+
+.bound {
+  width: 100%;
+  background-color: white;
+  padding: 20px 10px;
+  overflow: auto;
+  border: 1px dotted white;
+}
+
+.bound:hover {
+  border-radius: 5x;
+  border: 1px dashed gray;
+  background-color: lightcyan;
+}
+
+.selected {
+  background-color: lightcyan;
+}
+

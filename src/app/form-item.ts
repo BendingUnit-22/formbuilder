@@ -4,3 +4,8 @@ export class FormItem {
   displayIcon: object;
   displayName: string;
 }
+
+
+export class TextFieldItem extends FormItem {
+
+}

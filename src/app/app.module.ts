@@ -5,16 +5,26 @@ import { AppComponent } from './app.component';
 import { BuilderComponent } from './builder/builder.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
  import {AngularDraggableModule} from 'angular2-draggable';
+import { UiviewComponent } from './uiview/uiview.component';
+import {DragulaModule} from 'ng2-dragula';
+import { HeaderviewComponent } from './headerview/headerview.component';
+import {FormsModule} from '@angular/forms';
+import { TextfieldComponent } from './textfield/textfield.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BuilderComponent
+    BuilderComponent,
+    UiviewComponent,
+    HeaderviewComponent,
+    TextfieldComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
-    AngularDraggableModule
+    AngularDraggableModule,
+    DragulaModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
