@@ -10,7 +10,7 @@
 .bound:hover {
   border-radius: 5x;
   border: 1px dashed gray;
-  background-color: lightcyan;
+  background-color: lightgrey;
 }
 
 .selected {

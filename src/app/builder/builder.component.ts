@@ -16,7 +16,8 @@ export class BuilderComponent implements OnInit {
 
   formItems: FormItem[] = [];
   contentBoundary = {x: 0, y: 0, width: 0, height: 0 };
-  selectedIndex: number;
+  selectedIndex: number = -1;
+  showEditor = false;
   constructor() {
 
   }
@@ -27,8 +28,9 @@ export class BuilderComponent implements OnInit {
 
 
    selectElement(event) {
+      this.showEditor = true;
       this.selectedIndex = event;
-   }
+    }
 
    clearHighLight(){
       this.selectedIndex = -1;

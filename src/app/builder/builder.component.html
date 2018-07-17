@@ -8,13 +8,13 @@
 
     <div class="col-4" id="side_area" >
     <ul class="nav nav-tabs">
-      <li class="nav-item"><a  data-toggle="tab" href="#elements" class="nav-link text-warning active">Elements</a></li>
-      <li class="nav-item"><a  data-toggle="tab" href="#editor" class="nav-link  text-warning">Editor</a></li>
+      <li class="nav-item"><a  data-toggle="tab" href="#elements" class="nav-link text-warning" [class.active]='!showEditor'>Elements</a></li>
+      <li class="nav-item"><a  data-toggle="tab" href="#editor" class="nav-link text-warning " [class.active]='showEditor'>Editor</a></li>
     </ul>
 
       <div class="tab-content clearfix">
         <!--Element Tab-->
-        <ul class="list-group tab-pane active" id="elements">
+        <ul class="list-group tab-pane" id="elements" [class.active]='!showEditor'>
           <li *ngFor="let item of templateTypes" #item_element
               class="list-group-item"
               [ngDraggable]="true"
@@ -27,8 +27,8 @@
             <fa-icon [icon]="item.displayIcon"></fa-icon> <span>{{item.displayName}}</span>
           </li>
         </ul>
-        <!--Element Tab-->
-        <div id="editor" class="tab-pane">
+        <!--Editor Tab-->
+        <div id="editor" class="tab-pane active" [class.active]='showEditor'>
           Editor
         </div>
       </div>
