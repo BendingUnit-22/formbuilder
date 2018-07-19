@@ -3,16 +3,20 @@
 <div class="row" #content_boundary id="content_boundary">
 
   <div class="col-8"  #main_area id="main_area" [dragula]="main_area_bag">
-    <app-uiview *ngFor="let droppedItem of formItems; let i = index" [formitem]="droppedItem" (viewClick)="selectElement(i)" [selected]="i==selectedIndex"></app-uiview>
+    <app-uiview *ngFor="let droppedItem of formItems; let i = index"
+                [formItem]="droppedItem"
+                (viewClick)="selectElement(droppedItem, i)"
+                [selected]="i==selectedIndex">
+    </app-uiview>
   </div>
 
     <div class="col-4" id="side_area" >
     <ul class="nav nav-tabs">
-      <li class="nav-item"><a  data-toggle="tab" href="#elements" class="nav-link text-warning" [class.active]='!showEditor'>Elements</a></li>
-      <li class="nav-item"><a  data-toggle="tab" href="#editor" class="nav-link text-warning " [class.active]='showEditor'>Editor</a></li>
+      <li class="nav-item"><a  data-toggle="tab" href="#elements" class="nav-link text-warning active" (click)="clearSelection()" #elementTab>Elements</a></li>
+      <li class="nav-item"><a  data-toggle="tab" href="#editor" class="nav-link text-warning " #editorTab>Editor</a></li>
     </ul>
 
-      <div class="tab-content clearfix">
+      <div class="tab-content clearfix" (click)="clearSelection()">
         <!--Element Tab-->
         <ul class="list-group tab-pane" id="elements" [class.active]='!showEditor'>
           <li *ngFor="let item of templateTypes" #item_element
@@ -29,7 +33,7 @@
         </ul>
         <!--Editor Tab-->
         <div id="editor" class="tab-pane active" [class.active]='showEditor'>
-          Editor
+          <app-editor  [formItem]="formItems[selectedIndex]"></app-editor>
         </div>
       </div>
   </div>

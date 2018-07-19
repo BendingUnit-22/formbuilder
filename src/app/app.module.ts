@@ -10,6 +10,9 @@ import {DragulaModule} from 'ng2-dragula';
 import { HeaderviewComponent } from './headerview/headerview.component';
 import {FormsModule} from '@angular/forms';
 import { TextfieldComponent } from './textfield/textfield.component';
+import { EditorComponent } from './editor/editor.component';
+import { TitleviewComponent } from './titleview/titleview.component';
+import { PhoneviewComponent } from './phoneview/phoneview.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { TextfieldComponent } from './textfield/textfield.component';
     BuilderComponent,
     UiviewComponent,
     HeaderviewComponent,
-    TextfieldComponent
+    TextfieldComponent,
+    EditorComponent,
+    TitleviewComponent,
+    PhoneviewComponent
   ],
   imports: [
     BrowserModule,

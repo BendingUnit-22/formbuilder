@@ -8,7 +8,7 @@ import { FormItem } from '../form-item';
 })
 export class UiviewComponent implements OnInit {
 
-  @Input() formitem: FormItem;
+  @Input() formItem: FormItem;
   @Input() selected: boolean;
 
   @Output()

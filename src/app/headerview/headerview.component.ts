@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormItem, HeaderItem} from '../form-item';
 
 @Component({
   selector: 'app-headerview',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./headerview.component.css']
 })
 export class HeaderviewComponent implements OnInit {
-
+  @Input() formItem: HeaderItem;
   constructor() { }
-
   ngOnInit() {
+
   }
 
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormItem} from '../form-item';
-import {faEdit, faQuoteLeft} from '@fortawesome/free-solid-svg-icons';
+ import {FormItemService} from '../form-item.service';
 
 @Component({
   selector: 'app-builder',
@@ -9,41 +9,53 @@ import {faEdit, faQuoteLeft} from '@fortawesome/free-solid-svg-icons';
 })
 export class BuilderComponent implements OnInit {
 
-  templateTypes: FormItem[] = [
-    {itemType: 'textfield', displayIcon: faEdit, displayName: 'Text Field'},
-    {itemType: 'header', displayIcon: faQuoteLeft, displayName: 'Header'}
-  ];
+  @ViewChild('elementTab') elementTab: ElementRef;
+  @ViewChild('editorTab') editorTab: ElementRef;
 
-  formItems: FormItem[] = [];
+  templateTypes: FormItem[];
+  formItems: FormItem[];
   contentBoundary = {x: 0, y: 0, width: 0, height: 0 };
-  selectedIndex: number = -1;
+  selectedIndex = -1;
   showEditor = false;
-  constructor() {
 
-  }
+  constructor(private formService: FormItemService) {}
 
   ngOnInit() {
-
+    this.getTemplateTypes();
+    this.getNewTemplate();
    }
 
+   getTemplateTypes(): void {
+      this.formService.getFormItems()
+        .subscribe(items => this.templateTypes = items);
+   }
 
-   selectElement(event) {
-      this.showEditor = true;
-      this.selectedIndex = event;
-    }
+   getNewTemplate(): void {
+      this.formService.getNewTemplate()
+        .subscribe(template => this.formItems = template);
+   }
 
-   clearHighLight(){
+   selectElement(item, i) {
+     if (this.selectedIndex === i) {
+       this.selectedIndex = -1;
+       this.elementTab.nativeElement.classList.add('active');
+       this.editorTab.nativeElement.classList.remove('active');
+       this.showEditor = false;
+     } else {
+       this.selectedIndex = i;
+       this.elementTab.nativeElement.classList.remove('active');
+       this.editorTab.nativeElement.classList.add('active');
+       this.showEditor = true;
+     }
+   }
+
+  clearSelection(){
       this.selectedIndex = -1;
+      this.showEditor = false;
    }
 
   onStart(content_box) {
     this.contentBoundary = {x: content_box.x, y: content_box.y, width: content_box.width, height: content_box.width };
-  }
-
-  onMoving(itemBound) {
-    // const movingItemBound = {x: itemBound.x, y: itemBound.y, width: itemBound.width, height: itemBound.width };
-    // const center = this.midPoint(movingItemBound);
-    // this.logger = 'x:' + center.centerX + ' y: ' + center.centerY;
   }
 
   onMoveEnd(itemBound, item) {

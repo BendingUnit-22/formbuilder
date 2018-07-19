@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormItem} from '../form-item';
+import {FormItem, TextFieldItem} from '../form-item';
 
 @Component({
   selector: 'app-textfield',
@@ -7,7 +7,7 @@ import {FormItem} from '../form-item';
   styleUrls: ['./textfield.component.css']
 })
 export class TextfieldComponent implements OnInit {
-  @Input() formitem: FormItem;
+  @Input() formItem: TextFieldItem;
 
   constructor() { }
 
