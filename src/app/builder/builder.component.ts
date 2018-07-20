@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormItem} from '../form-item';
  import {FormItemService} from '../form-item.service';
+import {Icons} from '../icons';
 
 @Component({
   selector: 'app-builder',
@@ -19,7 +20,6 @@ export class BuilderComponent implements OnInit {
   showEditor = false;
 
   constructor(private formService: FormItemService) {}
-
   ngOnInit() {
     this.getTemplateTypes();
     this.getNewTemplate();
@@ -34,6 +34,11 @@ export class BuilderComponent implements OnInit {
       this.formService.getNewTemplate()
         .subscribe(template => this.formItems = template);
    }
+
+   getIcon(formItem) {
+      return new Icons().icon(formItem.itemType);
+   }
+
 
    selectElement(item, i) {
      if (this.selectedIndex === i) {
@@ -61,6 +66,7 @@ export class BuilderComponent implements OnInit {
   onMoveEnd(itemBound, item) {
     const movingItemBound = {x: itemBound.x, y: itemBound.y, width: itemBound.width, height: itemBound.width };
     const containInBound = this.containsBound(this.contentBoundary, movingItemBound);
+    item.newUUID(); // mark unqiue
     if (containInBound) {
       this.formItems.push(item);
     }
@@ -77,5 +83,6 @@ export class BuilderComponent implements OnInit {
     const centerY = frame.y + frame.height / 2.0;
     return {centerX: centerX, centerY: centerY};
   }
+
 
 }

@@ -4,16 +4,14 @@
   background-color: white;
   padding: 20px 10px;
   overflow: auto;
-  border: 1px dotted white;
 }
 
 .bound:hover {
   border-radius: 5x;
-  border: 1px dashed gray;
   background-color: lightgrey;
 }
 
 .selected {
-  background-color: lightcyan;
+  background-color: rgba(100, 150, 200, 0.8);
 }
 

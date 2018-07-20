@@ -1,9 +1,16 @@
-import {Form} from '@angular/forms';
+import {UUID} from 'angular2-uuid';
 
 export class FormItem {
+  uuid: string;
   itemType: string;
-  displayIcon: object;
   displayName: string;
+  constructor() {
+    this.uuid = UUID.UUID();
+  }
+
+  newUUID(){
+    this.uuid = UUID.UUID();
+  }
 }
 
 export class HeaderItem extends FormItem{
@@ -23,7 +30,5 @@ export class TitleItem extends FormItem {
 
 export class PhoneItem extends FormItem {
   title: string;
-  areaCodePlaceHolder: string;
-  midNumsPlaceHolder: string;
-  lastNumsPlaceHolder: string;
+  placeHolder: string;
 }
